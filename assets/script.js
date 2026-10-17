@@ -20,3 +20,37 @@ if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     });
   }));
 }
+
+
+// V12: sliding cards with three visible on desktop, two on tablet, one on mobile.
+(()=>{
+ const configurations=[['.project-grid','Projects'],['.skills-grid','Skills'],['.cert-grid','Credentials']];
+ const carousels=[];
+ configurations.forEach(([selector,label])=>{
+  const track=document.querySelector(selector);if(!track)return;
+  const shell=document.createElement('div');shell.className='carousel-shell';
+  const viewport=document.createElement('div');viewport.className='carousel-viewport';
+  track.parentNode.insertBefore(shell,track);shell.appendChild(viewport);viewport.appendChild(track);track.classList.add('carousel-track');
+  const controls=document.createElement('div');controls.className='carousel-controls';
+  const prev=document.createElement('button');prev.type='button';prev.className='carousel-arrow';prev.textContent='←';prev.setAttribute('aria-label','Previous '+label+' slide');
+  const status=document.createElement('span');status.className='carousel-status';status.setAttribute('aria-live','polite');
+  const next=document.createElement('button');next.type='button';next.className='carousel-arrow';next.textContent='→';next.setAttribute('aria-label','Next '+label+' slide');
+  controls.append(prev,status,next);shell.append(controls);
+  let page=0;const visible=()=>[...track.children].filter(el=>!el.hidden);
+  const count=()=>innerWidth<=650?1:innerWidth<=1000?2:3;
+  function update(){const cards=visible(),per=count(),pages=Math.max(1,Math.ceil(cards.length/per));page=Math.min(page,pages-1);
+   // Filtered cards are positioned by flexbox; move track to the first card in the current page.
+   const card=cards[page*per];const offset=card?card.offsetLeft-track.offsetLeft:0;track.style.transform=`translateX(${-offset}px)`;
+   status.textContent=`${page+1} / ${pages}`;prev.disabled=page===0;next.disabled=page>=pages-1;
+   controls.hidden=pages<=1;
+   cards.forEach((el,i)=>{const inPage=i>=page*per&&i<(page+1)*per;el.setAttribute('aria-hidden',String(!inPage));
+     if(!inPage)el.querySelectorAll('a,button').forEach(a=>a.setAttribute('tabindex','-1'));else el.querySelectorAll('a,button').forEach(a=>a.removeAttribute('tabindex'));
+   });
+  }
+  prev.addEventListener('click',()=>{page=Math.max(0,page-1);update()});next.addEventListener('click',()=>{page++;update()});
+  shell.addEventListener('keydown',e=>{if(e.target.closest('input,textarea'))return;if(e.key==='ArrowRight'){e.preventDefault();next.click()}if(e.key==='ArrowLeft'){e.preventDefault();prev.click()}});
+  carousels.push({update,reset:()=>{page=0;update()}});update();
+ });
+ let resizeTimer;addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>carousels.forEach(c=>c.update()),120)});
+ document.querySelectorAll('.filter').forEach(button=>button.addEventListener('click',()=>requestAnimationFrame(()=>carousels[0]?.reset())));
+})();
