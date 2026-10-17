@@ -28,3 +28,16 @@
 .reveal.visible.stagger-1{transition-delay:.07s}.reveal.visible.stagger-2{transition-delay:.14s}.reveal.visible.stagger-3{transition-delay:.21s}
 :focus-visible{outline:2px solid var(--gold2);outline-offset:4px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1!important;transform:none!important}}
+
+/* V11 — restrained corporate glass and hover magnification */
+:root{--glass-surface:rgba(255,255,255,.055);--glass-edge:rgba(239,199,128,.19);--glass-highlight:rgba(255,255,255,.095)}
+.project,.skill-card,.cert,.about-panel,.experience-card,.contact-box,.stat-grid>div{background:linear-gradient(145deg,var(--glass-highlight),rgba(255,255,255,.018) 48%,rgba(213,166,90,.028))!important;backdrop-filter:blur(14px) saturate(115%);-webkit-backdrop-filter:blur(14px) saturate(115%);border:1px solid var(--glass-edge);box-shadow:inset 0 1px 0 rgba(255,255,255,.085),0 10px 28px rgba(0,0,0,.17);border-radius:9px;position:relative;isolation:isolate;transform:translateZ(0);transition:transform .48s cubic-bezier(.2,.75,.25,1),box-shadow .48s ease,border-color .4s ease,background .4s ease!important}
+.project:hover,.skill-card:hover,.cert:hover,.about-panel:hover,.experience-card:hover,.contact-box:hover,.stat-grid>div:hover{transform:translateY(-7px) scale(1.035)!important;z-index:5;border-color:rgba(239,199,128,.58);box-shadow:inset 0 1px 0 rgba(255,255,255,.17),0 24px 46px rgba(0,0,0,.37),0 0 24px rgba(213,166,90,.085)}
+.project:focus-within,.cert:focus-within{z-index:5;border-color:var(--gold2)}
+.project h3,.skill-card h3,.cert h3{transition:color .35s ease,transform .4s ease}
+.project:hover h3,.skill-card:hover h3,.cert:hover h3{color:var(--gold2);transform:scale(1.015);transform-origin:left center}
+.about-panel>div{border-color:rgba(239,199,128,.13)}
+.stat-grid{gap:14px}.stat-grid>div{padding:18px 22px!important}
+@media(max-width:740px){.project:hover,.skill-card:hover,.cert:hover,.about-panel:hover,.experience-card:hover,.contact-box:hover,.stat-grid>div:hover{transform:translateY(-3px) scale(1.008)!important}.stat-grid{gap:10px}.stat-grid>div{padding:13px!important}}
+@media(hover:none){.project:hover,.skill-card:hover,.cert:hover,.about-panel:hover,.experience-card:hover,.contact-box:hover,.stat-grid>div:hover{transform:none!important}}
+@media(prefers-reduced-motion:reduce){.project,.skill-card,.cert,.about-panel,.experience-card,.contact-box,.stat-grid>div{transition:none!important}.project:hover,.skill-card:hover,.cert:hover,.about-panel:hover,.experience-card:hover,.contact-box:hover,.stat-grid>div:hover{transform:none!important}}

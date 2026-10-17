@@ -13,3 +13,10 @@ V9 motion refinements: staggered section reveals, hero text entrances, portrait 
 - Resume project terminology uses Multi-Tier rather than Three-Tier.
 - Preserved V9 black-and-gold portfolio UI, animations, themed scrollbar and favicon, photograph, and existing CV files.
 - Portfolio download links use documents/resume.docx and documents/cv.pdf.
+
+
+## V11 changes
+- Corporate frosted-glass cards, subtle gold edge, consistent hover zoom and elevation on cards/panels.
+- Latest one-page resume in `documents/resume.docx`.
+- Restored photo/original CV template in `documents/cv.pdf` and `documents/cv-editable.docx`.
+- Reduced-motion and touch-friendly hover behavior.
