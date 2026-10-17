@@ -1,10 +1,7 @@
-# Akhil Kuragayala — Executive Cloud & DevOps Portfolio V4
+# Akhil Kuragayala — Professional Cloud & DevOps Portfolio V7
 
-Professional static website for GitHub Pages, with an integrated portrait, restrained CSS transitions, scroll-reveal animations, theme-matched scrollbars, project filters, and responsive layout.
+GitHub Pages deployment: upload the **contents** of this folder to the root of `KuragayalaAkhil.github.io` on the `main` branch, preserving the `assets/` and `documents/` folders.
 
-## Deploy
-Upload **all files and folders** in this directory to the root of the `main` branch of `KuragayalaAkhil/KuragayalaAkhil.github.io`. GitHub Pages source: `main` / `(root)`.
+Includes navy/gold favicon, responsive professional UI, transitions, animations, portrait, updated professionally aligned resume (`documents/resume.docx`), and updated CV with V Cube training (`documents/cv.pdf`).
 
 Website: https://kuragayalaakhil.github.io/
-
-Includes `documents/resume.docx` and `documents/cv.pdf` from the previously prepared V3 package. Review their contents before sharing publicly.
